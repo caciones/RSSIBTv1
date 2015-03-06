@@ -12,13 +12,15 @@ import junit.framework.TestCase;
  */
 public class RoomDAOTest extends TestCase {
 
-    //@Test
+
     public void testCreateRoom(){
 
         RoomDomain roomTest = new RoomDomain("casa",4,5,"casaBT");
-        RoomDAO.saveRoom("casa",4,5,"casaBT");
+        roomTest.save();
 
-        assertEquals(RoomDAO.loadRoom(0L), roomTest );
+
+
+        assertEquals(roomTest, RoomDAO.loadRoom(1));
     }
 
 }

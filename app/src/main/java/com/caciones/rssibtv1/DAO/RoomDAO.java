@@ -1,6 +1,7 @@
 package com.caciones.rssibtv1.DAO;
 
 import com.caciones.rssibtv1.Domain.RoomDomain;
+import com.orm.SugarRecord;
 
 import java.util.Iterator;
 import java.util.List;
@@ -18,14 +19,14 @@ public class RoomDAO {
     }
 
     public static void saveRoom(String name, int width, int length, String nameBT){
-        RoomDomain room = new RoomDomain(name, width,length, nameBT);
+        RoomDomain room = new RoomDomain(name, width, length, nameBT);
         room.save();
 
     }
 
     public static RoomDomain loadRoom(long id){
 
-        return RoomDomain.findById(RoomDomain.class, id);
+        return SugarRecord.findById(RoomDomain.class, id);
     }
 
     public static void deleteRoom(RoomDomain room){
