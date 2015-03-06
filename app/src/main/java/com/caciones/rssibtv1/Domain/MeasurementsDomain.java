@@ -54,4 +54,28 @@ public class MeasurementsDomain extends SugarRecord<MeasurementsDomain>{
     public void setMeasurement(double measurement) {
         this.measurement = measurement;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof MeasurementsDomain ){
+            if(((MeasurementsDomain) obj).getCoordX() == this.getCoordX() && ((MeasurementsDomain) obj).getCoordY() == this.getCoordY() &&
+                    ((MeasurementsDomain) obj).getMeasurement() == this.getMeasurement()  && ((MeasurementsDomain) obj).getRoom().equals(this.getMeasurement())  ){
+            return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+
+    }
+
+
+    @Override
+    public String toString(){
+        return this.getRoom().toString() + ' ' + this.getCoordX() + ' ' + this.getCoordY() + ' ' + this.getMeasurement();
+    }
+
+
 }
