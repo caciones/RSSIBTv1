@@ -31,7 +31,7 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
     }
 
     public double getWidth() {
-        return width;
+        return this.width;
     }
 
     public void setWidth(double width) {
@@ -39,7 +39,7 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
     }
 
     public double getLength() {
-        return length;
+        return this.length;
     }
 
     public void setLength(double length) {
@@ -47,7 +47,7 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
     }
 
     public String getNameBT() {
-        return nameBT;
+        return this.nameBT;
     }
 
     public void setNameBT(String nameBT) {
@@ -55,6 +55,30 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof RoomDomain && ((RoomDomain) obj).getLength() == this.getLength() && ((RoomDomain) obj).getWidth() == this.getWidth() &&
+                ((RoomDomain) obj).getName().equals(this.getName())  && ((RoomDomain) obj).getNameBT().equals(this.getNameBT())){
+            /*if(((RoomDomain) obj).getLength() == this.getLength() && ((RoomDomain) obj).getWidth() == this.getWidth() &&
+                    ((RoomDomain) obj).getName() == this.getName() && ((RoomDomain) obj).getNameBT() == this.getNameBT()){*/
+                return true;
+           /* }else {
+                return false;
+            }*/
+        }else{
+            return false;
+        }
+
+
+    }
+
+
+    @Override
+    public String toString(){
+        return this.getName() + ' ' + this.getLength() + ' ' + this.getWidth() + ' ' + this.getNameBT();
+    }
+
 }
