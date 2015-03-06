@@ -60,14 +60,13 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
 
     @Override
     public boolean equals(Object obj){
-        if(obj instanceof RoomDomain && ((RoomDomain) obj).getLength() == this.getLength() && ((RoomDomain) obj).getWidth() == this.getWidth() &&
-                ((RoomDomain) obj).getName().equals(this.getName())  && ((RoomDomain) obj).getNameBT().equals(this.getNameBT())){
-            /*if(((RoomDomain) obj).getLength() == this.getLength() && ((RoomDomain) obj).getWidth() == this.getWidth() &&
-                    ((RoomDomain) obj).getName() == this.getName() && ((RoomDomain) obj).getNameBT() == this.getNameBT()){*/
+        if(obj instanceof RoomDomain){
+            if(((RoomDomain) obj).getLength() == this.length && ((RoomDomain) obj).getWidth() == this.width &&
+                ((RoomDomain) obj).getName().equals(this.name)  && ((RoomDomain) obj).getNameBT().equals(this.nameBT)){
                 return true;
-           /* }else {
+            } else {
                 return false;
-            }*/
+            }
         }else{
             return false;
         }
