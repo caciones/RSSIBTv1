@@ -1,5 +1,7 @@
 package com.caciones.rssibtv1;
 
+import android.test.suitebuilder.annotation.MediumTest;
+
 import com.caciones.rssibtv1.DAO.RoomDAO;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
@@ -21,6 +23,7 @@ public class RoomDAOTest extends TestCase {
 
 
     //test save and count rooms
+    @MediumTest
     public void testSaveCountRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
@@ -35,6 +38,7 @@ public class RoomDAOTest extends TestCase {
     }
 
     // test find by name
+    @MediumTest
     public void testFindByNameRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
@@ -49,6 +53,7 @@ public class RoomDAOTest extends TestCase {
     }
 
 
+    @MediumTest
     public void testListAllRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
@@ -72,6 +77,7 @@ public class RoomDAOTest extends TestCase {
 
     }
 
+    @MediumTest
     public void testUpdateRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
@@ -85,5 +91,20 @@ public class RoomDAOTest extends TestCase {
         RoomDAO.updateRoom(RoomDAO.findRoomByName("casa3"), "upcasa", 4, 5, "upcasaBT");
 
         assertEquals(new RoomDomain("upcasa",4,5,"upcasaBT"),RoomDAO.findRoomByName("upcasa"));
+    }
+
+    @MediumTest
+    public void testDeleteRoom(){
+
+        SugarRecord.deleteAll(RoomDomain.class);
+
+        RoomDomain roomTemplate = new RoomDomain("casa", 4, 5, "casaBT");
+        roomTemplate.save();
+
+        assertEquals(1, SugarRecord.count(RoomDomain.class, null, null));
+
+        RoomDAO.deleteRoom(roomTemplate);
+
+        assertEquals(0, SugarRecord.count(RoomDomain.class, null, null));
     }
 }

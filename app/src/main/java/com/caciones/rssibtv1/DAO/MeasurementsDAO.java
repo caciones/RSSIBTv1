@@ -44,7 +44,7 @@ public class MeasurementsDAO {
         return measure;
     }
 
-    public void deleteMeasure(MeasurementsDomain measure){
+    public static void deleteMeasure(MeasurementsDomain measure){
         measure.delete();
     }
 
@@ -58,6 +58,14 @@ public class MeasurementsDAO {
 
         return queryMeasure;
 
+    }
+
+
+    public static void saveListOfMeasurements(List<MeasurementsDomain> listAllMeasurements){
+
+        for(MeasurementsDomain measurement: listAllMeasurements){
+            measurement.save();
+        }
     }
 
 }
