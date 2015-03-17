@@ -46,7 +46,7 @@ public class RoomDAO {
 
     }
 
-    public RoomDomain findRoomByName(String name){
+    public static RoomDomain findRoomByName(String name){
 
         List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "name = ?", name);
 

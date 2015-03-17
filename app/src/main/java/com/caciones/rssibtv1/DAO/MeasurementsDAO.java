@@ -5,6 +5,7 @@ import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Lenovo on 27/02/2015.
@@ -46,4 +47,17 @@ public class MeasurementsDAO {
     public void deleteMeasure(MeasurementsDomain measure){
         measure.delete();
     }
+
+    public static List<MeasurementsDomain> findAllMeasurementsAtRoom(String name){
+
+        List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "name = ?", name);
+
+        RoomDomain room = query.get(0);
+
+        List<MeasurementsDomain> queryMeasure = MeasurementsDomain.find(MeasurementsDomain.class, "room = ?", room.getId().toString() );
+
+        return queryMeasure;
+
+    }
+
 }
