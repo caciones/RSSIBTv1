@@ -29,6 +29,7 @@ public class RoomDAO {
         return SugarRecord.findById(RoomDomain.class, id);
     }
 
+
     public static void deleteRoom(RoomDomain room){
         room.delete();
     }
@@ -59,5 +60,8 @@ public class RoomDAO {
 
         return query.get(0);
     }
+
+    //TODO verificar se existe Room
+    //TODO Query com todos os Rooms
 
 }

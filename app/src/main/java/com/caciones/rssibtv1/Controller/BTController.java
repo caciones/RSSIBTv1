@@ -6,13 +6,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.caciones.rssibtv1.RO.BTDeviceRO;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
 /**
  * Created by Lenovo on 17/03/2015.
  */
-public class SearchBT {
+public class BTController {
 
 
     private BluetoothAdapter BA;
@@ -47,6 +51,25 @@ public class SearchBT {
 
         }
     };
+
+// fazer uma lista com os nomes tirados da listBTDevices
+    // TODO  meter a lista de nomes no view
+    public List<BTDeviceRO> getNameFromListBTDevices(){
+
+        List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
+
+
+        for(Map.Entry<BluetoothDevice, Integer> deviceEntry : this.listBTDevices.entrySet()){
+
+                BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().getName(), deviceEntry.getValue() );
+
+                btNames.add(deviceRO);
+
+        }
+
+        return btNames;
+    }
+
 
 
 }
