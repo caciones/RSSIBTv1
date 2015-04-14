@@ -4,7 +4,7 @@ package com.caciones.rssibtv1.RO;
  * Created by Lenovo on 27/03/2015.
  */
 public class BTDeviceRO {
-    //TODO chamar a lista de nomes dos devices e os valores da listBTDevices para depois meter no view
+    //TODO chamar a lista de nomes dos devices e os valores da listBTDevices para depois meter no view(activity2)
 
     private String btName;
     private int rssiValue;

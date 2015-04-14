@@ -1,6 +1,7 @@
 package com.caciones.rssibtv1;
 
 import android.test.suitebuilder.annotation.MediumTest;
+import android.test.suitebuilder.annotation.LargeTest;
 
 import com.caciones.rssibtv1.DAO.RoomDAO;
 import com.caciones.rssibtv1.Domain.RoomDomain;
@@ -106,5 +107,29 @@ public class RoomDAOTest extends TestCase {
         RoomDAO.deleteRoom(roomTemplate);
 
         assertEquals(0, SugarRecord.count(RoomDomain.class, null, null));
+    }
+
+    @LargeTest
+    public void testIsThereRoom(){
+
+        SugarRecord.deleteAll(RoomDomain.class);
+
+        for(int i=1; i<6; i++){
+            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            roomTemplate.save();
+
+        }
+
+
+        RoomDomain testRoomTrue = new RoomDomain("casa1", 5, 4, "casaBT1");
+
+        RoomDomain testRoomFalse = new RoomDomain("nipp", 1, 1, "nippBT");
+
+        assertTrue(RoomDAO.isThereRoom(testRoomTrue));
+
+        assertFalse(RoomDAO.isThereRoom(testRoomFalse));
+
+
+
     }
 }

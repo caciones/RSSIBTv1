@@ -51,17 +51,42 @@ public class RoomDAO {
 
         List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "name = ?", name);
 
-        return query.get(0);
+
+        if(query.isEmpty()){
+            return new RoomDomain();
+        } else{
+            return query.get(0);
+        }
     }
 
+// nao sei se este metodo e' necessaio
     public RoomDomain findByBTName(String nameBT){
 
         List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "nameBT = ?", nameBT);
 
-        return query.get(0);
+        if(query.isEmpty()){
+            return new RoomDomain();
+        } else{
+            return query.get(0);
+        }
+
     }
 
-    //TODO verificar se existe Room
-    //TODO Query com todos os Rooms
+    // verificar se existe Room X
+    public static Boolean isThereRoom(RoomDomain room){
+
+
+        if(findRoomByName(room.getName()).equals(room)){
+            return true;
+        } else{
+            return false;
+        }
+
+
+    }
+
+
+
+   // public RoomDomain getAllRooms()
 
 }

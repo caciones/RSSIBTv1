@@ -3,6 +3,8 @@ package com.caciones.rssibtv1.Controller;
 import com.caciones.rssibtv1.DAO.RoomDAO;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,9 +24,19 @@ public class RoomController {
 
     }
 
+// rever isto
+//TODO meter a lista com todas as Rooms
     public List<RoomDomain> loadAllRooms(){
-        //TODO meter a lista com todas as Rooms
 
-        return null;
+        List<RoomDomain> roomDomainList = new ArrayList<RoomDomain>();
+
+        Iterator<RoomDomain> roomDomainIterator = RoomDAO.getAllRoom();
+
+        while (roomDomainIterator.hasNext()){
+            roomDomainList.add(roomDomainIterator.next());
+        }
+        return roomDomainList;
     }
+
+
 }
