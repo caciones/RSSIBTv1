@@ -24,7 +24,7 @@ public class MeasurementsDomain extends SugarRecord<MeasurementsDomain>{
     }
 
     public RoomDomain getRoom() {
-        return room;
+        return this.room;
     }
 
     public void setRoom(RoomDomain room) {

@@ -4,6 +4,7 @@ import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.caciones.rssibtv1.DAO.RoomDAO;
+import com.caciones.rssibtv1.Domain.BuildingDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
 
@@ -28,9 +29,12 @@ public class RoomDAOTest extends TestCase {
     public void testSaveCountRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
 
         for(int i=1; i<5; i++){
-            RoomDomain roomTest = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            RoomDomain roomTest = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
             roomTest.save();
         }
 
@@ -43,14 +47,32 @@ public class RoomDAOTest extends TestCase {
     public void testFindByNameRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         for(int i=1; i<6; i++){
-            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
-            roomTemplate.save();
+            RoomDAO.saveRoom(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
 
         }
 
-        assertEquals(new RoomDomain("casa3", 7,2, "casaBT3"), RoomDAO.findRoomByName("casa3"));
+        assertEquals(RoomDAO.findRoomByName("casa3"), new RoomDomain(larTest, "casa3", 7,2, "casaBT3"));
+    }
+    @MediumTest
+    public void testRoomBuilding(){
+
+        SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
+
+        RoomDomain room = new RoomDomain( "casa", 4, 5, "casaBT");
+        room.setBuilding(larTest);
+        room.save();
+
+        assertEquals(larTest, room.getBuilding());
     }
 
 
@@ -58,21 +80,24 @@ public class RoomDAOTest extends TestCase {
     public void testListAllRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         for(int i=1; i<6; i++){
-            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
             roomTemplate.save();
 
         }
 
         List<RoomDomain> list = new ArrayList<>();
         for(int i=1; i<6; i++){
-            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
             list.add(roomTemplate);
 
         }
-
-
 
         assertEquals(list, SugarRecord.listAll(RoomDomain.class));
 
@@ -82,24 +107,31 @@ public class RoomDAOTest extends TestCase {
     public void testUpdateRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+       // SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         for(int i=1; i<6; i++){
-            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
             roomTemplate.save();
 
         }
 
-        RoomDAO.updateRoom(RoomDAO.findRoomByName("casa3"), "upcasa", 4, 5, "upcasaBT");
+        RoomDAO.updateRoom(RoomDAO.findRoomByName("casa3"), larTest, "upcasa", 4, 5, "upcasaBT");
 
-        assertEquals(new RoomDomain("upcasa",4,5,"upcasaBT"),RoomDAO.findRoomByName("upcasa"));
+        assertEquals(new RoomDomain(larTest, "upcasa",4,5,"upcasaBT"),RoomDAO.findRoomByName("upcasa"));
     }
 
     @MediumTest
     public void testDeleteRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
 
-        RoomDomain roomTemplate = new RoomDomain("casa", 4, 5, "casaBT");
+        BuildingDomain larTest = new BuildingDomain("lar");
+
+        RoomDomain roomTemplate = new RoomDomain(larTest, "casa", 4, 5, "casaBT");
         roomTemplate.save();
 
         assertEquals(1, SugarRecord.count(RoomDomain.class, null, null));
@@ -113,23 +145,49 @@ public class RoomDAOTest extends TestCase {
     public void testIsThereRoom(){
 
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         for(int i=1; i<6; i++){
-            RoomDomain roomTemplate = new RoomDomain("casa"+i, 4+i, 5-i, "casaBT"+i);
+            RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
             roomTemplate.save();
 
         }
 
 
-        RoomDomain testRoomTrue = new RoomDomain("casa1", 5, 4, "casaBT1");
+        RoomDomain testRoomTrue = new RoomDomain(larTest, "casa1", 5, 4, "casaBT1");
 
-        RoomDomain testRoomFalse = new RoomDomain("nipp", 1, 1, "nippBT");
+        RoomDomain testRoomFalse = new RoomDomain(larTest, "nipp", 1, 1, "nippBT");
 
         assertTrue(RoomDAO.isThereRoom(testRoomTrue));
 
         assertFalse(RoomDAO.isThereRoom(testRoomFalse));
 
 
+
+    }
+
+
+    public void testAllRoomFromBuilding(){
+
+        SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
+
+        List<RoomDomain> roomDomainList = new ArrayList<>();
+        for(int i=1; i<6; i++){
+            RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
+            roomTemplate.save();
+            roomDomainList.add(roomTemplate);
+        }
+
+
+
+        assertEquals(roomDomainList, RoomDAO.getAllRoomsFromBuilding("lar"));
 
     }
 }

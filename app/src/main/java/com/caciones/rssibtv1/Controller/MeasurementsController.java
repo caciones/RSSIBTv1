@@ -4,8 +4,6 @@ import com.caciones.rssibtv1.DAO.MeasurementsDAO;
 import com.caciones.rssibtv1.Domain.MeasurementsDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,15 +25,10 @@ public class MeasurementsController {
 
     }
 
-    public List<MeasurementsDomain> loadAllMeasurements(){
+    public List<MeasurementsDomain> loadAllMeasurements(String nameRoom){
 
-        List<MeasurementsDomain> measurementsDomainList = new ArrayList<MeasurementsDomain>();
+        List<MeasurementsDomain> measurementsDomainList = MeasurementsDAO.findAllMeasurementsAtRoom(nameRoom);
 
-        Iterator<MeasurementsDomain> measurementsDomainIterator = MeasurementsDAO.getAllMeasures();
-
-        while(measurementsDomainIterator.hasNext()){
-            measurementsDomainList.add(measurementsDomainIterator.next());
-        }
         return measurementsDomainList;
     }
 

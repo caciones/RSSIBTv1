@@ -2,8 +2,9 @@ package com.caciones.rssibtv1.Controller;
 
 import com.caciones.rssibtv1.DAO.BuildingDAO;
 import com.caciones.rssibtv1.Domain.BuildingDomain;
-import com.caciones.rssibtv1.Domain.RoomDomain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,17 +14,24 @@ public class BuildingController {
 
     //receber os paramentros do Measurement
 
-    public void createBuilding(RoomDomain room, String nameBuilding){
-        BuildingDAO.saveBuilding(room, nameBuilding);
+    public void createBuilding( String nameBuilding){
+        BuildingDAO.saveBuilding(nameBuilding);
     }
 
-    //TODO load buildings by name
-    public List<BuildingDomain> loadBuilding(String nameBuilding){
 
+    public List<BuildingDomain> loadAllBuilding(){
 
-    return null;
+        List<BuildingDomain> buildingDomainList = new ArrayList<BuildingDomain>();
+
+        Iterator<BuildingDomain> buildingDomainIterator = BuildingDAO.getAllBuilding();
+
+        while (buildingDomainIterator.hasNext()){
+            buildingDomainList.add(buildingDomainIterator.next());
+        }
+
+         return buildingDomainList;
     }
 
-    //TODO LoadAllBuildings
+
 
 }

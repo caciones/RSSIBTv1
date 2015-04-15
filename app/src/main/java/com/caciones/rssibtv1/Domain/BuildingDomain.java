@@ -9,15 +9,15 @@ public class BuildingDomain extends SugarRecord<BuildingDomain> {
 
 
     String nameBuilding;
-    RoomDomain room;
+
 
     public BuildingDomain() {
     }
 
-    public BuildingDomain(RoomDomain room, String nameBuilding) {
+    public BuildingDomain( String nameBuilding) {
 
         this.nameBuilding = nameBuilding;
-        this.room = room;
+
 
     }
 
@@ -29,20 +29,14 @@ public class BuildingDomain extends SugarRecord<BuildingDomain> {
         return this.nameBuilding;
     }
 
-    public RoomDomain getRoom() {
-        return this.room;
-    }
 
-    public void setRoom(RoomDomain room) {
-        this.room = room;
-    }
 
 
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof BuildingDomain) {
-            if (((BuildingDomain) obj).getNameBuilding().equals(this.nameBuilding) && ((BuildingDomain) obj).getNameBuilding().equals(this.nameBuilding)) {
+            if (((BuildingDomain) obj).getNameBuilding().equals(this.nameBuilding)){
                 return true;
             } else {
                 return false;
@@ -57,6 +51,6 @@ public class BuildingDomain extends SugarRecord<BuildingDomain> {
 
     @Override
     public String toString() {
-        return this.getNameBuilding() + ' ' + this.getNameBuilding();
+        return this.getNameBuilding();
     }
 }

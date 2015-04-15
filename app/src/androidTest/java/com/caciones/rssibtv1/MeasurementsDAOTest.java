@@ -3,6 +3,7 @@ package com.caciones.rssibtv1;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.caciones.rssibtv1.DAO.MeasurementsDAO;
+import com.caciones.rssibtv1.Domain.BuildingDomain;
 import com.caciones.rssibtv1.Domain.MeasurementsDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
@@ -21,10 +22,15 @@ public class MeasurementsDAOTest extends TestCase {
     @MediumTest
     public void testCreateMeasurements(){
 
+       // SugarRecord.deleteAll(BuildingDomain.class);
         SugarRecord.deleteAll(MeasurementsDomain.class);
         SugarRecord.deleteAll(RoomDomain.class);
 
-        RoomDomain roomTest = new RoomDomain("casa2", 6,7, "casaBT2");
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
+
+        RoomDomain roomTest = new RoomDomain(larTest, "casa2", 6,7, "casaBT2");
         roomTest.save();
 
         MeasurementsDomain measureTest = new MeasurementsDomain(roomTest, 4, 5, 5.0);
@@ -37,14 +43,19 @@ public class MeasurementsDAOTest extends TestCase {
 
     @MediumTest
     public void testQueryfindAllMeasurementsAtRoom(){
+//descobrir qual o problema entre o  SugarRecord.deleteAll(MeasurementsDomain.class) e  RoomDomain.deleteAll(RoomDomain.class) nao se percebe bem o funcionamento
 
         SugarRecord.deleteAll(MeasurementsDomain.class);
         RoomDomain.deleteAll(RoomDomain.class);
+        //SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         int n = 5;
         double measurement = 0.0;
 
-        RoomDomain roomTest = new RoomDomain("home", n,n, "homeBT");
+        RoomDomain roomTest = new RoomDomain(larTest,"home", n,n, "homeBT");
         roomTest.save();
 
         List<MeasurementsDomain> list = new ArrayList<>();
@@ -66,13 +77,17 @@ public class MeasurementsDAOTest extends TestCase {
 
         SugarRecord.deleteAll(MeasurementsDomain.class);
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+
 
         int i = 5;
         int j = 4;
         int n = 6;
         double measurement = 0.0;
 
-        RoomDomain roomTest = new RoomDomain("home", n,n, "homeBT");
+        RoomDomain roomTest = new RoomDomain(larTest,"home", n,n, "homeBT");
         roomTest.save();
 
         MeasurementsDomain measureTest = new MeasurementsDomain(roomTest, j, i, measurement+i+j);
@@ -89,13 +104,16 @@ public class MeasurementsDAOTest extends TestCase {
 
         SugarRecord.deleteAll(MeasurementsDomain.class);
         SugarRecord.deleteAll(RoomDomain.class);
+        SugarRecord.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
 
         int i = 5;
         int j = 4;
         int n = 6;
         double measurement = 0.0;
 
-        RoomDomain roomTest = new RoomDomain("home", n,n, "homeBT");
+        RoomDomain roomTest = new RoomDomain(larTest, "home", n,n, "homeBT");
         roomTest.save();
 
         MeasurementsDomain measureTest = new MeasurementsDomain(roomTest, j, i, measurement+i+j);
@@ -110,15 +128,19 @@ public class MeasurementsDAOTest extends TestCase {
     }
 
     @MediumTest
-    public void testSaveAllMesurements(){
+    public void testSaveAllMeasurements(){
 
         SugarRecord.deleteAll(MeasurementsDomain.class);
         RoomDomain.deleteAll(RoomDomain.class);
+        BuildingDomain.deleteAll(BuildingDomain.class);
+
+        BuildingDomain larTest = new BuildingDomain("lar");
+        larTest.save();
 
         int n = 5;
         double measurement = 0.0;
 
-        RoomDomain roomTest = new RoomDomain("home", n,n, "homeBT");
+        RoomDomain roomTest = new RoomDomain(larTest, "home", n,n, "homeBT");
         roomTest.save();
 
         List<MeasurementsDomain> list = new ArrayList<>();

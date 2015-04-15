@@ -4,7 +4,7 @@ import com.caciones.rssibtv1.Domain.MeasurementsDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,12 +12,8 @@ import java.util.List;
  */
 public class MeasurementsDAO {
 
-    public static Iterator<MeasurementsDomain> getAllMeasures(){
 
-        Iterator<MeasurementsDomain> measures = MeasurementsDomain.findAll(MeasurementsDomain.class);
 
-        return measures;
-    }
 
     public static void saveMeasure(RoomDomain room, int coordX, int coordY, double measurement){
         MeasurementsDomain measure = new MeasurementsDomain(room, coordX, coordY, measurement);
@@ -50,13 +46,15 @@ public class MeasurementsDAO {
 
     public static List<MeasurementsDomain> findAllMeasurementsAtRoom(String name){
 
-        List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "name = ?", name);
-
-        RoomDomain room = query.get(0);
+        RoomDomain room = RoomDAO.findRoomByName(name);
 
         List<MeasurementsDomain> queryMeasure = MeasurementsDomain.find(MeasurementsDomain.class, "room = ?", room.getId().toString() );
 
-        return queryMeasure;
+        if(queryMeasure.isEmpty()){
+            return new ArrayList<MeasurementsDomain> ();
+        } else{
+            return queryMeasure;
+        }
 
     }
 

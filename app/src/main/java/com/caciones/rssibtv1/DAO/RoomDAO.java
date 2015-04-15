@@ -1,9 +1,10 @@
 package com.caciones.rssibtv1.DAO;
 
+import com.caciones.rssibtv1.Domain.BuildingDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,15 +12,9 @@ import java.util.List;
  */
 public class RoomDAO {
 
-    public static Iterator<RoomDomain> getAllRoom(){
 
-        Iterator<RoomDomain> rooms = RoomDomain.findAll(RoomDomain.class);
-
-        return rooms;
-    }
-
-    public static void saveRoom(String name, int width, int length, String nameBT){
-        RoomDomain room = new RoomDomain(name, width, length, nameBT);
+    public static void saveRoom(BuildingDomain building, String name, int width, int length, String nameBT){
+        RoomDomain room = new RoomDomain(building, name, width, length, nameBT);
         room.save();
 
     }
@@ -34,8 +29,9 @@ public class RoomDAO {
         room.delete();
     }
 
-    public static RoomDomain updateRoom(RoomDomain room, String name, int width, int length, String nameBT){
+    public static RoomDomain updateRoom(RoomDomain room, BuildingDomain building, String name, int width, int length, String nameBT){
 
+        room.setBuilding(building);
         room.setName(name);
         room.setWidth(width);
         room.setLength(length);
@@ -87,6 +83,21 @@ public class RoomDAO {
 
 
 
-   // public RoomDomain getAllRooms()
+// allRoomsfromBuilding  - quando a view comunicar com o controller, enviar o index, e deixar o nome do que vai estar escrito na lista
+
+    public static List<RoomDomain> getAllRoomsFromBuilding(String nameBuilding){
+
+        List<BuildingDomain> building = BuildingDomain.find(BuildingDomain.class, "name_building = ?", nameBuilding);
+        List<RoomDomain> query = RoomDomain.find(RoomDomain.class,"building = ?", building.get(0).getId().toString());
+
+        if(query.isEmpty()){
+            return new ArrayList<RoomDomain>();
+            }
+        else{
+            return query;
+        }
+
+    }
+
 
 }

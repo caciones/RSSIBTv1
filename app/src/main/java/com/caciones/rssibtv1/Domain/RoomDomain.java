@@ -7,7 +7,7 @@ import com.orm.SugarRecord;
  */
 public class RoomDomain extends SugarRecord<RoomDomain>{
 
-
+    BuildingDomain building;
     String name;
     double width;
     double length;
@@ -16,7 +16,19 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
     public RoomDomain(){
     }
 
-    public RoomDomain(String name, double width, double length, String nameBT){
+    public RoomDomain(BuildingDomain building, String name, double width, double length, String nameBT){
+
+        this.building = building;
+        this.name = name;
+        this.width = width;
+        this.length = length;
+        this.nameBT = nameBT;
+
+
+    }
+
+    public RoomDomain( String name, double width, double length, String nameBT){
+
 
         this.name = name;
         this.width = width;
@@ -24,6 +36,10 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
         this.nameBT = nameBT;
 
 
+    }
+
+    public void setBuilding(BuildingDomain building) {
+        this.building = building;
     }
 
     public void setName(String name) {
@@ -58,10 +74,14 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
         return this.name;
     }
 
+    public BuildingDomain getBuilding() {
+        return building;
+    }
+
     @Override
     public boolean equals(Object obj){
         if(obj instanceof RoomDomain){
-            if(((RoomDomain) obj).getLength() == this.length && ((RoomDomain) obj).getWidth() == this.width &&
+            if( ((RoomDomain) obj).getBuilding().equals(this.building) && ((RoomDomain) obj).getLength() == this.length && ((RoomDomain) obj).getWidth() == this.width &&
                 ((RoomDomain) obj).getName().equals(this.name)  && ((RoomDomain) obj).getNameBT().equals(this.nameBT)){
                 return true;
             } else {
@@ -77,7 +97,7 @@ public class RoomDomain extends SugarRecord<RoomDomain>{
 
     @Override
     public String toString(){
-        return this.getName() + ' ' + this.getLength() + ' ' + this.getWidth() + ' ' + this.getNameBT();
+        return this.getName() + ' ' + this.getLength() + ' ' + this.getWidth() + ' ' + this.getNameBT() + ' ' + this.getBuilding();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.caciones.rssibtv1.DAO;
 
 import com.caciones.rssibtv1.Domain.BuildingDomain;
-import com.caciones.rssibtv1.Domain.RoomDomain;
 import com.orm.SugarRecord;
 
 import java.util.Iterator;
@@ -19,8 +18,8 @@ public class BuildingDAO {
         return Buildings;
     }
 
-    public static void saveBuilding(RoomDomain room, String nameBuilding){
-        BuildingDomain building = new BuildingDomain(room, nameBuilding);
+    public static void saveBuilding(String nameBuilding){
+        BuildingDomain building = new BuildingDomain(nameBuilding);
         building.save();
     }
 
@@ -33,30 +32,29 @@ public class BuildingDAO {
         building.delete();
     }
 
-    public static BuildingDomain updateBuilding(BuildingDomain building, RoomDomain room, String nameBuilding) {
+    public static BuildingDomain updateBuilding(BuildingDomain building, String nameBuilding) {
 
-        building.setRoom(room);
         building.setNameBuilding(nameBuilding);
-
         building.save();
 
         return building;
     }
 
+    // rever isto visto ter deixado de haver room
     public static List<BuildingDomain> findBuildingsByName(String buildingName){
 
-        List<RoomDomain> query = RoomDomain.find(RoomDomain.class, "buildingName = ?", buildingName);
-
-        RoomDomain room = query.get(0);
-
-        List<BuildingDomain> queryBuilding = BuildingDomain.find(BuildingDomain.class, "room = ?", room.getId().toString() );
+        List<BuildingDomain> queryBuilding = BuildingDomain.find(BuildingDomain.class, "buildingName= ?", buildingName.toString() );
 
         return queryBuilding;
 
     }
 
 
-    //TODO isThereBuilding
+    public static boolean isThereBuilding(String nameBuilding){
+
+       return !findBuildingsByName(nameBuilding).isEmpty();
+
+    }
 
 
 
