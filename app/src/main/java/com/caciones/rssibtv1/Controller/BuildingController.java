@@ -32,6 +32,22 @@ public class BuildingController {
          return buildingDomainList;
     }
 
+    //TODO save building
+    public void saveBuilding(String nameBuilding){
+        BuildingDAO.saveBuilding(nameBuilding);
+    }
+
+    //TODO boolean ifIsThere
+
+    public void isThereBuilding(String nameBuilding){
+
+        if(BuildingDAO.isThereBuilding(nameBuilding)){
+            RoomController.loadAllRooms(nameBuilding);
+        } else{
+            this.createBuilding(nameBuilding);
+        }
+
+    }
 
 
 }

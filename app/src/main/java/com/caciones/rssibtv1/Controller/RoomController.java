@@ -23,12 +23,23 @@ public class RoomController {
 
     }
 
-    public List<RoomDomain> loadAllRooms(String nameBuilding){
+    public static List<RoomDomain> loadAllRooms(String nameBuilding){
 
         List<RoomDomain> roomDomainList = RoomDAO.getAllRoomsFromBuilding(nameBuilding);
 
         return roomDomainList;
     }
 
+//TODO save room (nao sei se e' necessario devido ao create)
+    //TODO isThereRoom(se houver room carrega a sala com aquele nome)
 
+    public void isThereRoom(RoomDomain room){
+
+        if(RoomDAO.isThereRoom(room)){
+            loadRoom(room.getName());
+        }else{
+            //this.createRoom(room); //tem que esperar ate ter os dados todos para ser salvo
+        }
+
+    }
 }

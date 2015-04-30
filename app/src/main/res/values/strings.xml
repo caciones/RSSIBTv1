@@ -3,4 +3,19 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    //config_bt_screen
+    <string name="btn_delete">Delete</string>
+    <string name="room">Room: </string>
+    <string name="building">Building: </string>
+    <string name="size">Size:</string>
+    <string name="title">RSSI BT</string>
+    <string name="room_width">width</string>
+    <string name="room_height">height</string>
+
+
+    //choose_bt_screen
+    <string name="building_name"></string>
+    <string name="room_name"></string>
+
 </resources>
