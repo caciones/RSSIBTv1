@@ -12,7 +12,7 @@ import junit.framework.TestCase;
  */
 public class BuildingDAOTest extends TestCase{
 
-    //TODO testar a lista de buildings
+
 
     @MediumTest
     public void testSaveBuilding(){

@@ -31,12 +31,13 @@ public class BTController extends Activity{
     }
 
 
-    public Intent on(){
+    public void on(Activity a){
         if (!this.BA.isEnabled()){
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            return turnOn;
-        }
-        return null;
+            a.startActivityForResult(turnOn, 0);
+        }else
+            return;
+
     }
 
     public ArrayList<String> list(){

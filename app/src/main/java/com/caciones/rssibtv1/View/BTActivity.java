@@ -27,10 +27,9 @@ public class BTActivity extends ListActivity {
         Log.i(TAG, "onCreate BT Activity");
 
         BTController btController = new BTController();
-        Intent btOn = btController.on();//erro auqi
-        startActivityForResult(btOn, INTENT_BT);
+        btController.on(this);//erro auqi
 
-        Log.i(TAG, "onCreate BT Activity" + btOn);
+        Log.i(TAG, "onCreate BT Activity pass");
 
 
 
