@@ -22,6 +22,11 @@ public class BuildingDAOTest extends TestCase{
 
         BuildingDomain larTest = new BuildingDomain("lar");
         larTest.save();
+        BuildingDomain larTest1 = new BuildingDomain("casa");
+        larTest1.save();
+        BuildingDomain larTest2 = new BuildingDomain("escola");
+        larTest2.save();
+
 
         assertEquals(larTest, SugarRecord.find(BuildingDomain.class, "name_Building = ?", "lar").get(0));
 

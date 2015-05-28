@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- Label -->
+    <!--  <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Add New Building"
+          android:padding="8dip" />
+
+      &lt;!&ndash; Input Text &ndash;&gt;
+      <EditText android:id="@+id/input_label"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="8dip"
+          android:layout_marginRight="8dip"/>-->
+
+    <!-- Select Label -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Room"
+        android:padding="8dip" />
+
+    <!-- Spinner Dropdown -->
+    <Spinner
+        android:id="@+id/spinner_room"
+        android:layout_width="fill_parent"
+        android:layout_height="127dp"
+        android:prompt="@string/room_name"
+        android:layout_marginTop="20dip"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="133dp"
+        android:orientation="horizontal" >
+
+        <!-- Add Button -->
+        <Button android:id="@+id/btn_add_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginLeft="8dip"
+            android:layout_marginTop="8dip"/>
+
+        <!-- Add Button -->
+        <Button android:id="@+id/btn_delete_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginLeft="8dip"
+            android:layout_marginTop="8dip"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/btn_next_room"
+        android:layout_gravity="bottom|right"
+        android:onClick="onClickNext"/>
+</LinearLayout>

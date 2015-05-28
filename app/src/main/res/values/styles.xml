@@ -5,4 +5,9 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="ConfigScreenActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+
+    </style>
+
 </resources>

@@ -28,7 +28,9 @@ public class BuildingDAO {
         return SugarRecord.findById(BuildingDomain.class, id);
     }
 
-    public static void deleteBuilding(BuildingDomain building){
+    public static void deleteBuilding(String buildingName){
+        List<BuildingDomain> buildingList = findBuildingsByName(buildingName);
+        BuildingDomain building = buildingList.get(0);
         building.delete();
     }
 

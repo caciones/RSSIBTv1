@@ -4,6 +4,7 @@ import com.caciones.rssibtv1.DAO.RoomDAO;
 import com.caciones.rssibtv1.Domain.BuildingDomain;
 import com.caciones.rssibtv1.Domain.RoomDomain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,11 +24,20 @@ public class RoomController {
 
     }
 
-    public static List<RoomDomain> loadAllRooms(String nameBuilding){
+    public static List<String> loadAllRooms(String nameBuilding){
+
+        List<String> roomStringList = new ArrayList<String>();
 
         List<RoomDomain> roomDomainList = RoomDAO.getAllRoomsFromBuilding(nameBuilding);
 
-        return roomDomainList;
+
+
+        for(RoomDomain roomDomain : roomDomainList ){
+            roomStringList.add(roomDomain.getName());
+        }
+
+        return roomStringList;
+
     }
 
 //TODO save room (nao sei se e' necessario devido ao create)

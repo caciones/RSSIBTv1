@@ -19,17 +19,17 @@ public class BuildingController {
     }
 
 
-    public List<BuildingDomain> loadAllBuilding(){
+    public static List<String> loadAllBuilding(){
 
-        List<BuildingDomain> buildingDomainList = new ArrayList<BuildingDomain>();
+        List<String> buildingStringList = new ArrayList<String>();
 
         Iterator<BuildingDomain> buildingDomainIterator = BuildingDAO.getAllBuilding();
 
         while (buildingDomainIterator.hasNext()){
-            buildingDomainList.add(buildingDomainIterator.next());
+            buildingStringList.add(buildingDomainIterator.next().getNameBuilding());
         }
 
-         return buildingDomainList;
+         return buildingStringList;
     }
 
     //TODO save building
@@ -38,7 +38,7 @@ public class BuildingController {
     }
 
     //TODO boolean ifIsThere
-
+//passar isto para o activity para preencher a lista dos rooms
     public void isThereBuilding(String nameBuilding){
 
         if(BuildingDAO.isThereBuilding(nameBuilding)){
@@ -49,5 +49,9 @@ public class BuildingController {
 
     }
 
+    //delete um building e os respectivos rooms e repor a lista sem o referido building
+    public void deleteBuilding(String nameBuilding){
+        BuildingDAO.deleteBuilding(nameBuilding);
+    }
 
 }

@@ -12,10 +12,12 @@
     <string name="title">RSSI BT</string>
     <string name="room_width">width</string>
     <string name="room_height">height</string>
+    <string name="btn_next">Next</string>
 
 
     //choose_bt_screen
     <string name="building_name"></string>
     <string name="room_name"></string>
+    <string name="title_activity_get_intent_extra">GetIntentExtraActivity</string>
 
 </resources>
