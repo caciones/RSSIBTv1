@@ -1,5 +1,6 @@
 package com.caciones.rssibtv1.Controller;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -11,12 +12,13 @@ import com.caciones.rssibtv1.RO.BTDeviceRO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
  * Created by Lenovo on 17/03/2015.
  */
-public class BTController {
+public class BTController extends Activity{
 
 
     private BluetoothAdapter BA;
@@ -24,15 +26,27 @@ public class BTController {
 
     private Map<BluetoothDevice, Integer> listBTDevices;
 
-
-    public void on(){
-        if (!this.BA.isEnabled()){
-            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-
-        }
-
+    public BTController(){
+        this.BA = BluetoothAdapter.getDefaultAdapter();
     }
 
+
+    public Intent on(){
+        if (!this.BA.isEnabled()){
+            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            return turnOn;
+        }
+        return null;
+    }
+
+    public ArrayList<String> list(){
+        Set<BluetoothDevice> deviceSet = this.BA.getBondedDevices();
+        ArrayList<String> list = new ArrayList<>();
+        for(BluetoothDevice bt : deviceSet){
+            list.add(bt.getName());
+        }
+        return list;
+    }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {

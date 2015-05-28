@@ -1,14 +1,22 @@
 package com.caciones.rssibtv1.View;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import com.caciones.rssibtv1.Controller.BTController;
 import com.caciones.rssibtv1.R;
 
 public class BTActivity extends ListActivity {
 
+    private static final String TAG = "activityMessage";
+
+    static final int INTENT_BT = 1;
     //importar os btnames e os rssi de cada
 
     @Override
@@ -16,8 +24,34 @@ public class BTActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
 
-        //this.setListAdapter(new ArrayAdapter<String>(this, R.layout.list_bt_rssi, R.id.Itemname,itemname));
+        Log.i(TAG, "onCreate BT Activity");
+
+        BTController btController = new BTController();
+        Intent btOn = btController.on();//erro auqi
+        startActivityForResult(btOn, INTENT_BT);
+
+        Log.i(TAG, "onCreate BT Activity" + btOn);
+
+
+
+        //List<BTDeviceRO> btDeviceROList = BTController.
+        //BTArrayAdapter adapter = new BTArrayAdapter(this, values);
+        //setListAdapter(adapter);*/
+        ArrayAdapter<String> list = new ArrayAdapter<String>(this, R.layout.list_bt_rssi, btController.list());
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode==INTENT_BT){
+            if(resultCode==RESULT_OK){
+                Log.i(TAG, "BT is ON");
+                Toast.makeText(getApplicationContext(), "BT is ON",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
 
 
     @Override

@@ -187,7 +187,7 @@ public class RoomActivity extends ActionBarActivity implements AdapterView.OnIte
     public void onClickNextRoom(View v) {
 
 //se novo escolher RoomBTNetwork, se antigo passar directo para roomMatrix
-        Intent iBuilding = new Intent(RoomActivity.this, RoomMatrixScreenActivity.class);
+        Intent iBuilding = new Intent(RoomActivity.this, BTActivity.class);
 
         iBuilding.putExtra(ROOM_EXTRA, getRoomSelectet());
         startActivity(iBuilding);
