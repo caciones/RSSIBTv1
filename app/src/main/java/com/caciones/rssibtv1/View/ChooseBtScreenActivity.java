@@ -18,6 +18,9 @@ public class ChooseBtScreenActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_bt_screen);
+
+
+
 /*
        // out = (TextView) findViewById(R.id.out);
 

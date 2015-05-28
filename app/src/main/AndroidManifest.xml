@@ -8,7 +8,6 @@
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:debuggable="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data
@@ -24,7 +23,8 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.caciones.rssibtv1.Domain" />
 
-        <activity
+        <!--
+            <activity
             android:name=".View.SpinnerBuildingActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -39,20 +39,44 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.caciones.rssibtv1.View.SpinnerBuildingActivity" />
-
-
         </activity>
         <activity
             android:name=".View.ChooseBtScreenActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".View.GetIntentExtraActivity"
+            android:name=".View.RoomMatrixScreenActivity"
             android:label="@string/title_activity_get_intent_extra"
             android:parentActivityName=".View.SpinnerBuildingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.caciones.rssibtv1.View.SpinnerBuildingActivity" />
+        </activity>
+        -->
+        <activity
+            android:name=".View.BuildingActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".View.RoomActivity"
+            android:label="@string/title_activity_room"
+            android:parentActivityName=".View.BuildingActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.caciones.rssibtv1.View.BuildingActivity" />
+        </activity>
+        <activity
+            android:name=".View.BTActivity"
+            android:label="@string/title_activity_bt"
+            android:parentActivityName=".View.RoomActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.caciones.rssibtv1.View.RoomActivity" />
         </activity>
     </application>
 

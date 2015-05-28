@@ -120,7 +120,7 @@ public class SpinnerBuildingActivity extends ActionBarActivity implements OnItem
         }
 
         /**
-         * Function to load the spinner data from SQLite database
+         * Function to load the spinner data
          * */
         private void loadSpinnerData() {
 

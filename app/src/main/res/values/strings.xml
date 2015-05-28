@@ -19,5 +19,8 @@
     <string name="building_name"></string>
     <string name="room_name"></string>
     <string name="title_activity_get_intent_extra">GetIntentExtraActivity</string>
+    <string name="title_activity_building">BuildingActivity</string>
+    <string name="title_activity_room">RoomActivity</string>
+    <string name="title_activity_bt">BTActivity</string>
 
 </resources>
