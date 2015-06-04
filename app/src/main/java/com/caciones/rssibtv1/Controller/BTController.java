@@ -20,6 +20,7 @@ import java.util.Set;
  */
 public class BTController extends Activity{
 
+    private static final String TAG = "activityMessage";
 
     private BluetoothAdapter BA;
 
@@ -35,9 +36,8 @@ public class BTController extends Activity{
         if (!this.BA.isEnabled()){
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             a.startActivityForResult(turnOn, 0);
-        }else
-            return;
-
+        }
+        return ;
     }
 
     public ArrayList<String> list(){
@@ -49,7 +49,8 @@ public class BTController extends Activity{
         return list;
     }
 
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    //private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    public class UserDefinedBroadcastReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             // When discovery finds a device
@@ -57,7 +58,7 @@ public class BTController extends Activity{
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Add the name and address to an array adapter to show in a ListView
-                int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
+                int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);//posso ter de trocar o int por short
 
                 listBTDevices.put(device, rssi);
             }
@@ -83,6 +84,8 @@ public class BTController extends Activity{
         }
 
         return btNames;
+
+
     }
 
 

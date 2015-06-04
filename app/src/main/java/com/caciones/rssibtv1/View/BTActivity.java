@@ -29,14 +29,22 @@ public class BTActivity extends ListActivity {
         BTController btController = new BTController();
         btController.on(this);//erro auqi
 
-        Log.i(TAG, "onCreate BT Activity pass");
+
+        Log.i(TAG, "onCreate BT Activity" );
 
 
 
         //List<BTDeviceRO> btDeviceROList = BTController.
         //BTArrayAdapter adapter = new BTArrayAdapter(this, values);
         //setListAdapter(adapter);*/
+
+
         ArrayAdapter<String> list = new ArrayAdapter<String>(this, R.layout.list_bt_rssi, btController.list());
+        setListAdapter(list);
+
+        for(String s : btController.list()){
+            Log.i(TAG, "BlueTooth Network" + s);
+        }
     }
 
     @Override

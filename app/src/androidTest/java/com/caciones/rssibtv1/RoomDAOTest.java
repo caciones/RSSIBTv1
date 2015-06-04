@@ -109,7 +109,7 @@ public class RoomDAOTest extends TestCase {
         SugarRecord.deleteAll(RoomDomain.class);
        // SugarRecord.deleteAll(BuildingDomain.class);
 
-        BuildingDomain larTest = new BuildingDomain("lar");
+        BuildingDomain larTest = new BuildingDomain("lar5");
         larTest.save();
 
         for(int i=1; i<6; i++){
@@ -178,6 +178,7 @@ public class RoomDAOTest extends TestCase {
         BuildingDomain larTest = new BuildingDomain("lar");
         larTest.save();
 
+
         List<RoomDomain> roomDomainList = new ArrayList<>();
         for(int i=1; i<6; i++){
             RoomDomain roomTemplate = new RoomDomain(larTest, "casa"+i, 4+i, 5-i, "casaBT"+i);
@@ -188,6 +189,7 @@ public class RoomDAOTest extends TestCase {
 
 
         assertEquals(roomDomainList, RoomDAO.getAllRoomsFromBuilding("lar"));
+
 
     }
 }
