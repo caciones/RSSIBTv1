@@ -3,8 +3,6 @@ package com.caciones.rssibtv1.Controller;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 
 import com.caciones.rssibtv1.RO.BTDeviceRO;
@@ -24,19 +22,18 @@ public class BTController extends Activity{
 
     private BluetoothAdapter BA;
 
-
     private Map<BluetoothDevice, Integer> listBTDevices;
 
     public BTController(){
         this.BA = BluetoothAdapter.getDefaultAdapter();
     }
 
-
     public void on(Activity a){
         if (!this.BA.isEnabled()){
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             a.startActivityForResult(turnOn, 0);
         }
+        this.BA.startDiscovery();
         return ;
     }
 
@@ -49,8 +46,7 @@ public class BTController extends Activity{
         return list;
     }
 
-    //private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-    public class UserDefinedBroadcastReceiver extends BroadcastReceiver {
+    /*private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             // When discovery finds a device
@@ -62,11 +58,8 @@ public class BTController extends Activity{
 
                 listBTDevices.put(device, rssi);
             }
-
-
-
         }
-    };
+    };*/
 
 // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
@@ -74,23 +67,19 @@ public class BTController extends Activity{
 
         List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
 
-
         for(Map.Entry<BluetoothDevice, Integer> deviceEntry : this.listBTDevices.entrySet()){
 
                 BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().getName(), deviceEntry.getValue() );
-
                 btNames.add(deviceRO);
-
         }
-
         return btNames;
-
-
     }
 
 
 
+    public void receiveBroadcastBT(){
 
+    }
 }
 
 
