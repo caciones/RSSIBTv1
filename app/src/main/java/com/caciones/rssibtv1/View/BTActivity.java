@@ -1,21 +1,22 @@
 package com.caciones.rssibtv1.View;
 
 import android.app.ListActivity;
-import android.content.Intent;
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.caciones.rssibtv1.Controller.BTController;
+import com.caciones.rssibtv1.Controller.BTReciever;
 import com.caciones.rssibtv1.R;
 
 public class BTActivity extends ListActivity {
 
     private static final String TAG = "activityMessage";
-
+    private BTController btController = new BTController();
     static final int INTENT_BT = 1;
     //importar os btnames e os rssi de cada
 
@@ -24,42 +25,21 @@ public class BTActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
 
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        BroadcastReceiver broadcastReceiver = new BTReciever();
+        registerReceiver(broadcastReceiver, filter);
+
         Log.i(TAG, "onCreate BT Activity");
 
-        BTController btController = new BTController();
-        btController.on(this);//erro auqi
-
-
-        Log.i(TAG, "onCreate BT Activity" );
-
-
-
-        //List<BTDeviceRO> btDeviceROList = BTController.
-        //BTArrayAdapter adapter = new BTArrayAdapter(this, values);
-        //setListAdapter(adapter);*/
-
-
+        this.btController.on(this);
+/*
         ArrayAdapter<String> list = new ArrayAdapter<String>(this, R.layout.list_bt_rssi, btController.list());
         setListAdapter(list);
 
         for(String s : btController.list()){
-            Log.i(TAG, "BlueTooth Network" + s);
-        }
+            Log.i(TAG, "BlueTooth Network " + s);
+        }*/
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode==INTENT_BT){
-            if(resultCode==RESULT_OK){
-                Log.i(TAG, "BT is ON");
-                Toast.makeText(getApplicationContext(), "BT is ON",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        }
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,5 +61,9 @@ public class BTActivity extends ListActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void getDevices(){
+        Log.i(TAG, "After_BC_BT_ON");
     }
 }

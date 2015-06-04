@@ -1,10 +1,13 @@
 package com.caciones.rssibtv1.Controller;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
+import com.caciones.rssibtv1.View.BTActivity;
 
 /**
  * Created by Faisco on 29-05-2015.
@@ -14,17 +17,22 @@ public class BTReciever extends BroadcastReceiver{
     private static final String TAG = "activityMessage";
 
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "received" );
+            Log.i(TAG, "BroadCast received" );
+            final String action = intent.getAction();
 
-            String action = intent.getAction();
-            // When discovery finds a device
-
-            // Get the BluetoothDevice object from the Intent
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            // Add the name and address to an array adapter to show in a ListView
-            int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
-            Log.i(TAG, "rssi " + rssi  );
-            //BTController.put(device, rssi);
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                        BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_ON:
+                        Log.i(TAG, "BT_ON_BCR" );
+                        //TODO: Lançar a listagem
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_ON:
+                        Log.i(TAG, "BT_Turning_ON_BCR" );
+                        break;
+                }
+            }
 
 
         }
