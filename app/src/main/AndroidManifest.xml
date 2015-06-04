@@ -78,6 +78,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.caciones.rssibtv1.View.RoomActivity" />
         </activity>
+
+        <receiver android:name=".Controller.BTReciever" >
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.FOUND" >
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
