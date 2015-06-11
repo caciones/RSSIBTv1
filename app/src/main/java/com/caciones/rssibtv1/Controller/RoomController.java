@@ -52,4 +52,10 @@ public class RoomController {
         }
 
     }
+
+    //TODO voltar a ir buscar o tamanho do room para por no activity para formar a tabela
+    /*
+    public roomSize(String nameRoom){
+
+    }*/
 }

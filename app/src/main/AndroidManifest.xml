@@ -58,6 +58,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -79,9 +80,16 @@
         </activity>
 
         <receiver android:name=".Controller.BTReciever" >
-
         </receiver>
 
+        <activity
+            android:name=".View.MeasurementsActivity"
+            android:label="@string/title_activity_measurements"
+            android:parentActivityName=".View.BTActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.caciones.rssibtv1.View.BTActivity" />
+        </activity>
     </application>
 
 </manifest>

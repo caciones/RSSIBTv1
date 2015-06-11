@@ -28,10 +28,10 @@ public class BTArrayAdapter extends ArrayAdapter<BTDeviceRO> {
         View rowView = inflater.inflate(R.layout.list_bt_rssi, parent, false);
 
         TextView textView_name = (TextView) rowView.findViewById(R.id.list_bt_name);
-        //TextView textView_rssi = (TextView) rowView.findViewById(R.id.list_rssi);
+        TextView textView_rssi = (TextView) rowView.findViewById(R.id.list_rssi);
 
         textView_name.setText(BtDevice[position].getBtName());
-       // textView_rssi.setText(BtDevice[position].getRssiValue());
+        textView_rssi.setText(BtDevice[position].getRssiValue());
 
 
         return rowView;

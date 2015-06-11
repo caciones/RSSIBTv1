@@ -22,5 +22,6 @@
     <string name="title_activity_building">BuildingActivity</string>
     <string name="title_activity_room">RoomActivity</string>
     <string name="title_activity_bt">BTActivity</string>
+    <string name="title_activity_measurements">MeasurementsActivity</string>
 
 </resources>

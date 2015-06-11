@@ -39,6 +39,7 @@ public class BTActivity extends ListActivity {
         for(String s : btController.list()){
             Log.i(TAG, "BlueTooth Network " + s);
         }*/
+
     }
 
     @Override
@@ -65,5 +66,23 @@ public class BTActivity extends ListActivity {
 
     public static void getDevices(){
         Log.i(TAG, "After_BC_BT_ON");
+
+
+
     }
+
+/*
+    public void listBT(View v){
+
+
+
+        ArrayList list = new ArrayList();
+
+        for(String bt : this.btController.list())
+            list.add(bt);
+        Toast.makeText(getApplicationContext(), "Showing Paired Devices", Toast.LENGTH_SHORT).show();
+
+        final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1, list);
+        lv.setAdapter(adapter);
+    }*/
 }

@@ -99,5 +99,10 @@ public class RoomDAO {
 
     }
 
+    //TODO buscar o tamanho do room para o inserir no tamanho da tabela na activity
+    /*
+    public static getRoomSize(RoomDomain room){
+        return
+*/
 
 }
