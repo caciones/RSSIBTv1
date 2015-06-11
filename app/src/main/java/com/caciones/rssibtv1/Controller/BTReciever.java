@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import java.util.Set;
+import com.caciones.rssibtv1.View.BTActivity;
 
 /**
  * Created by Faisco on 29-05-2015.
@@ -15,13 +15,7 @@ import java.util.Set;
 public class BTReciever extends BroadcastReceiver{
 
     private static final String TAG = "activityMessage";
-
-    private Set<BluetoothDevice> pairedDevices;
-
-
     private BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
-
-
         public void onReceive(Context context, Intent intent) {
             Log.i(TAG, "BroadCast received" );
             final String action = intent.getAction();
@@ -34,10 +28,6 @@ public class BTReciever extends BroadcastReceiver{
                         Log.i(TAG, "BT_ON_BCR" );
                         //TODO: Lançar a listagem
                         ba.startDiscovery();
-
-
-                        Log.i(TAG, "chegou " + ba.toString() );
-
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
                         Log.i(TAG, "BT_Turning_ON_BCR" );
@@ -47,7 +37,6 @@ public class BTReciever extends BroadcastReceiver{
 
 
         }
-
 
 
 }

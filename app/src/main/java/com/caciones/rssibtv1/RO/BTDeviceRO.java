@@ -17,6 +17,10 @@ public class BTDeviceRO {
         this.btName = btName;
         this.rssiValue = rssiValue;
     }
+    public BTDeviceRO(String btName){
+        this.btName = btName;
+
+    }
 
     public String getBtName() {
         return btName;
@@ -32,5 +36,9 @@ public class BTDeviceRO {
 
     public void setRssiValue(int rssiValue) {
         this.rssiValue = rssiValue;
+    }
+
+    public String toString(){
+        return "Name: " + this.btName + "; value: " + this.rssiValue;
     }
 }

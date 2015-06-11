@@ -10,30 +10,29 @@ import android.widget.TextView;
 import com.caciones.rssibtv1.R;
 import com.caciones.rssibtv1.RO.BTDeviceRO;
 
-public class BTArrayAdapter extends ArrayAdapter<BTDeviceRO> {
-    private final Context context;
-    private final BTDeviceRO[] BtDevice;
+import java.util.List;
 
-    public BTArrayAdapter(Context context, BTDeviceRO[] values) {
+public class BTArrayAdapter extends ArrayAdapter<BTDeviceRO> {
+
+
+    public BTArrayAdapter(Context context, List<BTDeviceRO> values) {
         super(context, R.layout.list_bt_rssi, values);
-        this.context = context;
-        this.BtDevice = values;
+
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        BTDeviceRO btDeviceRO = getItem(position);
+        if(convertView == null){
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_bt_rssi, parent,false);
+        }
 
-        View rowView = inflater.inflate(R.layout.list_bt_rssi, parent, false);
+        TextView textView_name = (TextView) convertView.findViewById(R.id.list_bt_name);
+        TextView textView_rssi = (TextView) convertView.findViewById(R.id.list_rssi);
 
-        TextView textView_name = (TextView) rowView.findViewById(R.id.list_bt_name);
-        TextView textView_rssi = (TextView) rowView.findViewById(R.id.list_rssi);
+        textView_name.setText(btDeviceRO.getBtName());
+        textView_rssi.setText(btDeviceRO.getRssiValue());
 
-        textView_name.setText(BtDevice[position].getBtName());
-        textView_rssi.setText(BtDevice[position].getRssiValue());
-
-
-        return rowView;
+        return convertView;
     }
 }
