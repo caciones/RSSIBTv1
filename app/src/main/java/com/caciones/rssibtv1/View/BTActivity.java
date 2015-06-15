@@ -2,7 +2,10 @@ package com.caciones.rssibtv1.View;
 
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +27,7 @@ public class BTActivity extends ListActivity {
     private BTController btController = new BTController();
     static final int INTENT_BT = 1;
     private ListView newDevicesListView;
+    private BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
     //importar os btnames e os rssi de cada
 
     @Override
@@ -31,8 +35,12 @@ public class BTActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
 
-        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
-        BroadcastReceiver broadcastReceiver = new BTReciever();
+        IntentFilter filterAd = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        BroadcastReceiver broadcastReceiverAd = new BTReciever();
+        registerReceiver(broadcastReceiverAd, filterAd);
+
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        BroadcastReceiver broadcastReceiver = new MyReciever();
         registerReceiver(broadcastReceiver, filter);
 
         Log.i(TAG, "onCreate BT Activity");
@@ -82,6 +90,13 @@ public class BTActivity extends ListActivity {
 
 
     }
+    public void refresh(){
+
+        if (this.ba.isDiscovering()) {
+            this.ba.cancelDiscovery();
+        }
+        this.ba.startDiscovery();
+    }
 
 
     public static void listBT(View v){
@@ -90,5 +105,24 @@ public class BTActivity extends ListActivity {
 
         final ArrayAdapter adapter = new BTArrayAdapter(v.getContext(), BTController.getListBTDevices());
         //lv.setAdapter(adapter);
+    }
+}
+
+class MyReciever extends BroadcastReceiver {
+    private static final String TAG = "activityMessage";
+
+    public void onReceive(Context context, Intent intent) {
+        final String action = intent.getAction();
+
+        if (action.equals(BluetoothDevice.ACTION_FOUND)) {
+            Log.i(TAG, "BT____FOUND");
+            String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
+            Log.i(TAG, "BT____FOUND_Name: " + extraName);
+            int extraRSSI = intent.getIntExtra(BluetoothDevice.EXTRA_RSSI, BluetoothDevice.ERROR);
+            BTController.putBTDevices(extraName, extraRSSI);
+            Log.i(TAG, "BT____FOUND");
+
+
+        }
     }
 }
