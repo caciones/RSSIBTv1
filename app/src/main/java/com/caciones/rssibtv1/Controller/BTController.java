@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.util.Log;
 
 import com.caciones.rssibtv1.RO.BTDeviceRO;
 
@@ -17,49 +16,53 @@ import java.util.Set;
 /**
  * Created by Lenovo on 17/03/2015.
  */
-public class BTController extends Activity{
+public class BTController extends Activity {
 
     private static final String TAG = "activityMessage";
     private static final int TURN_ON = 0;
 
     private BluetoothAdapter BA;
 
-    private Map<BluetoothDevice, Integer> listBTDevices;
+    private static Map<BluetoothDevice, Integer> listBTDevices;
 
-    public BTController(){
+    public BTController() {
         this.BA = BluetoothAdapter.getDefaultAdapter();
     }
 
-    public void on(Activity a){
-        if (!this.BA.isEnabled()){
+    public void on(Activity a) {
+        if (!this.BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             a.startActivityForResult(turnOn, TURN_ON);
         }
-        return ;
+        return;
     }
 
-    public ArrayList<String> list(){
+    public ArrayList<String> list() {
         Set<BluetoothDevice> deviceSet = this.BA.getBondedDevices();
         ArrayList<String> list = new ArrayList<>();
-        for(BluetoothDevice bt : deviceSet){
+        for (BluetoothDevice bt : deviceSet) {
             list.add(bt.getName());
         }
         return list;
     }
 
-// fazer uma lista com os nomes tirados da listBTDevices
+    // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
-    public List<BTDeviceRO> getNameFromListBTDevices(){
+    public static List<BTDeviceRO> getListBTDevices(String btName, int btRSSI) {
 
-        List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
+        List<BTDeviceRO> btDeviceROList = new ArrayList<BTDeviceRO>();
 
-        for(Map.Entry<BluetoothDevice, Integer> deviceEntry : this.listBTDevices.entrySet()){
 
-                BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().getName(), deviceEntry.getValue() );
-                btNames.add(deviceRO);
+        for (Map.Entry<BluetoothDevice, Integer> deviceEntry : listBTDevices.entrySet()) {
+
+            BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().getName(), deviceEntry.getValue());
+            btDeviceROList.add(deviceRO);
+
         }
-        return btNames;
+        return btDeviceROList;
     }
+
+    //TODO criar mapa estatico(String, int), lista estatica e os metodos tb
 
 }
 

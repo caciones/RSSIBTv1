@@ -7,13 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.caciones.rssibtv1.View.BTActivity;
+import com.caciones.rssibtv1.RO.BTDeviceRO;
+
+import java.util.List;
 
 /**
  * Created by Faisco on 29-05-2015.
  */
 public class BTReciever extends BroadcastReceiver{
 
+    private static final boolean D = true;
     private static final String TAG = "activityMessage";
     private BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
         public void onReceive(Context context, Intent intent) {
@@ -27,7 +30,7 @@ public class BTReciever extends BroadcastReceiver{
                     case BluetoothAdapter.STATE_ON:
                         Log.i(TAG, "BT_ON_BCR" );
                         //TODO: Lançar a listagem
-                        ba.startDiscovery();
+                        this.doDiscovery();
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
                         Log.i(TAG, "BT_Turning_ON_BCR" );
@@ -39,13 +42,32 @@ public class BTReciever extends BroadcastReceiver{
             } if (action.equals(BluetoothDevice.ACTION_FOUND)) {
                 String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
                 int extraRSSI= intent.getIntExtra(BluetoothDevice.EXTRA_RSSI, BluetoothDevice.ERROR);
-                //listar para lista estatica no BTController
 
+
+
+                //em cada action conferir, acrescentar e retirar ou alterar um nome e rssi 'a lista de btdevices
+
+
+
+                List<BTDeviceRO> btDeviceROList = BTController.getListBTDevices(extraName, extraRSSI); //lista de BTRO
+
+                Log.i(TAG, "Ola " );
 
             }
 
-            }
+
         }
 
 
+    private void doDiscovery() {
+
+        if (D) Log.d(TAG, "doDiscovery()");
+
+        // If we're already discovering, stop it
+        if (ba.isDiscovering()) {
+            ba.cancelDiscovery();
+        }
+        // Request discover from BluetoothAdapter
+        ba.startDiscovery();
+    }
 }
