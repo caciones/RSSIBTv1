@@ -32,6 +32,12 @@ public class BTActivity extends ListActivity {
         Log.i(TAG, "onCreate BT Activity");
 
         this.btController.on(this);
+
+       /* ListView newDevicesListView = (ListView) findViewById(R.id.);
+
+        newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
+
+        newDevicesListView.setOnItemClickListener(mDeviceClickListener);*/
 /*
         ArrayAdapter<String> list = new ArrayAdapter<String>(this, R.layout.list_bt_rssi, btController.list());
         setListAdapter(list);

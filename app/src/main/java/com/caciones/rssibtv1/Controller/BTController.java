@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * Created by Lenovo on 17/03/2015.
  */
-public class BTController extends Activity{
+public class BTController extends Activity {
 
     private static final String TAG = "activityMessage";
     private static final int TURN_ON = 0;
@@ -47,6 +47,9 @@ public class BTController extends Activity{
         return list;
     }
 
+// fazer uma lista com os nomes tirados da listBTDevices
+    // TODO  meter a lista de nomes no view
+    public List<BTDeviceRO> getNameFromListBTDevices(){
 
     public static void putBTDevices(String name, int rssi){
         listBTDevices.put(name, rssi);
