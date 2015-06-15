@@ -24,7 +24,7 @@ public class BTController extends Activity{
 
     private BluetoothAdapter BA;
 
-    private Map<BluetoothDevice, Integer> listBTDevices;
+    private static Map<String, Integer> listBTDevices;
 
     public BTController(){
         this.BA = BluetoothAdapter.getDefaultAdapter();
@@ -47,18 +47,9 @@ public class BTController extends Activity{
         return list;
     }
 
-// fazer uma lista com os nomes tirados da listBTDevices
-    // TODO  meter a lista de nomes no view
-    public List<BTDeviceRO> getNameFromListBTDevices(){
 
-        List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
-
-        for(Map.Entry<BluetoothDevice, Integer> deviceEntry : this.listBTDevices.entrySet()){
-
-                BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().getName(), deviceEntry.getValue() );
-                btNames.add(deviceRO);
-        }
-        return btNames;
+    public static void putBTDevices(String name, int rssi){
+        listBTDevices.put(name, rssi);
     }
 
 }

@@ -33,13 +33,11 @@ public class BTReciever extends BroadcastReceiver{
                         Log.i(TAG, "BT_Turning_ON_BCR" );
                         break;
                 }
-                /*
-                EXTRA_DEVICE and EXTRA_CLASS. Can contain the extra fields EXTRA_NAME and/or EXTRA_RSSI if
-                 */
+
             } if (action.equals(BluetoothDevice.ACTION_FOUND)) {
                 String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
                 int extraRSSI= intent.getIntExtra(BluetoothDevice.EXTRA_RSSI, BluetoothDevice.ERROR);
-                //listar para lista estatica no BTController
+                BTController.putBTDevices(extraName,extraRSSI);
 
 
             }
@@ -48,4 +46,4 @@ public class BTReciever extends BroadcastReceiver{
         }
 
 
-}
+
