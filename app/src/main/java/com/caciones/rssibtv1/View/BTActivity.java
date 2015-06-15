@@ -118,7 +118,7 @@ class MyReciever extends BroadcastReceiver {
             Log.i(TAG, "BT____FOUND");
             String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
             Log.i(TAG, "BT____FOUND_Name: " + extraName);
-            int extraRSSI = intent.getIntExtra(BluetoothDevice.EXTRA_RSSI, BluetoothDevice.ERROR);
+            short extraRSSI = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short)-1);
             BTController.putBTDevices(extraName, extraRSSI);
             Log.i(TAG, "BT____FOUND");
 

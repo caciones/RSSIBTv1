@@ -1,7 +1,7 @@
 package com.caciones.rssibtv1.Controller;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -32,9 +32,7 @@ public class BTReciever extends BroadcastReceiver{
                     Log.i(TAG, "BT_Turning_ON_BCR" );
                     break;
             }
-            /*
-            EXTRA_DEVICE and EXTRA_CLASS. Can contain the extra fields EXTRA_NAME and/or EXTRA_RSSI if
-             */
+
         }
 
     }
