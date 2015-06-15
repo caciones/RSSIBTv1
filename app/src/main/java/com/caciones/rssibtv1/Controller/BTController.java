@@ -49,7 +49,7 @@ public class BTController extends Activity {
 
 // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
-    public List<BTDeviceRO> getNameFromListBTDevices(){
+
 
     public static void putBTDevices(String name, int rssi){
         listBTDevices.put(name, rssi);
