@@ -50,8 +50,21 @@ public class BTController extends Activity {
 // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
 
+    public static List<BTDeviceRO> getListBTDevices(){
+
+        List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
+
+        for(Map.Entry<String, Integer> deviceEntry : listBTDevices.entrySet()){
+
+            BTDeviceRO deviceRO = new BTDeviceRO(deviceEntry.getKey().toString() , deviceEntry.getValue() );
+            btNames.add(deviceRO);
+        }
+        return btNames;
+    }
 
     public static void putBTDevices(String name, int rssi){
+        Log.i(TAG, "NameBT: "+name+"RSSI: "+rssi);
+
         listBTDevices.put(name, rssi);
     }
 

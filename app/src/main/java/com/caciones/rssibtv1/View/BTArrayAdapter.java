@@ -15,8 +15,8 @@ import java.util.List;
 public class BTArrayAdapter extends ArrayAdapter<BTDeviceRO> {
 
 
-    public BTArrayAdapter(Context context, List<BTDeviceRO> values) {
-        super(context, R.layout.list_bt_rssi, values);
+    public BTArrayAdapter(Context c, List<BTDeviceRO> values) {
+        super(c, R.layout.list_bt_rssi, values);
 
     }
 

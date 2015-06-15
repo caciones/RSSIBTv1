@@ -8,16 +8,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.caciones.rssibtv1.Controller.BTController;
 import com.caciones.rssibtv1.Controller.BTReciever;
 import com.caciones.rssibtv1.R;
+
+import java.util.ArrayList;
 
 public class BTActivity extends ListActivity {
 
     private static final String TAG = "activityMessage";
     private BTController btController = new BTController();
     static final int INTENT_BT = 1;
+    private ListView newDevicesListView;
     //importar os btnames e os rssi de cada
 
     @Override
@@ -33,7 +39,7 @@ public class BTActivity extends ListActivity {
 
         this.btController.on(this);
 
-       /* ListView newDevicesListView = (ListView) findViewById(R.id.);
+      /* this.newDevicesListView = (ListView) findViewById(R.id.list_bt_name);
 
         newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
 
@@ -77,18 +83,12 @@ public class BTActivity extends ListActivity {
 
     }
 
-/*
-    public void listBT(View v){
 
-
+    public static void listBT(View v){
 
         ArrayList list = new ArrayList();
 
-        for(String bt : this.btController.list())
-            list.add(bt);
-        Toast.makeText(getApplicationContext(), "Showing Paired Devices", Toast.LENGTH_SHORT).show();
-
-        final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1, list);
-        lv.setAdapter(adapter);
-    }*/
+        final ArrayAdapter adapter = new BTArrayAdapter(v.getContext(), BTController.getListBTDevices());
+        //lv.setAdapter(adapter);
+    }
 }
