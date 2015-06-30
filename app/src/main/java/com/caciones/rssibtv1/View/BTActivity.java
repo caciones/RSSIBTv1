@@ -4,8 +4,6 @@ import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,12 +38,13 @@ public class BTActivity extends ListActivity {
         registerReceiver(broadcastReceiverAd, filterAd);
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        BroadcastReceiver broadcastReceiver = new MyReciever();
+        BroadcastReceiver broadcastReceiver = new MyReceiver();
         registerReceiver(broadcastReceiver, filter);
 
         Log.i(TAG, "onCreate BT Activity");
 
         this.btController.on(this);
+
 
       /* this.newDevicesListView = (ListView) findViewById(R.id.list_bt_name);
 
@@ -108,21 +107,5 @@ public class BTActivity extends ListActivity {
     }
 }
 
-class MyReciever extends BroadcastReceiver {
-    private static final String TAG = "activityMessage";
-
-    public void onReceive(Context context, Intent intent) {
-        final String action = intent.getAction();
-
-        if (action.equals(BluetoothDevice.ACTION_FOUND)) {
-            Log.i(TAG, "BT____FOUND");
-            String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
-            Log.i(TAG, "BT____FOUND_Name: " + extraName);
-            short extraRSSI = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short)-1);
-            BTController.putBTDevices(extraName, extraRSSI);
-            Log.i(TAG, "BT____FOUND");
 
 
-        }
-    }
-}
