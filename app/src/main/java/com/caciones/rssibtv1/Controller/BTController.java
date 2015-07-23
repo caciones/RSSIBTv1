@@ -19,17 +19,24 @@ import java.util.Set;
  */
 public class BTController extends Activity {
 
+    private BTController instance = null;
     private static final String TAG = "activityMessage";
     private static final int TURN_ON = 0;
 
     private BluetoothAdapter BA;
 
-    private static Map<String, Integer> listBTDevices;
+    private  Map<String, Integer> listBTDevices;
 
-    public BTController(){
+    private BTController(){
         this.BA = BluetoothAdapter.getDefaultAdapter();
     }
 
+    public BTController getInstance(){
+        if(instance == null){
+            instance = new BTController();
+        }
+        return instance;
+    }
     public void on(Activity a){
         if (!this.BA.isEnabled()){
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -50,7 +57,7 @@ public class BTController extends Activity {
 // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
     
-    public static List<BTDeviceRO> getListBTDevices(){
+    public  List<BTDeviceRO> getListBTDevices(){
 
         List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
 
@@ -62,12 +69,12 @@ public class BTController extends Activity {
         return btNames;
     }
 
-    public static void putBTDevices(String name, int rssi){
+    public  void putBTDevices(String name, int rssi){
         Log.i(TAG, "NameBT: "+name+"RSSI: "+rssi);
 
         listBTDevices.put(name, rssi);
 
-        Log.i(TAG, "list complete" );
+        Log.i(TAG, "list complete");
     }
 
 }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class BTActivity extends ListActivity {
 
     private static final String TAG = "activityMessage";
-    private BTController btController = new BTController();
+    private BTController btController ;
     static final int INTENT_BT = 1;
     private ListView newDevicesListView;
     private BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
@@ -32,7 +32,7 @@ public class BTActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
-
+        BTController btController = BTController.getInstance();
         IntentFilter filterAd = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         BroadcastReceiver broadcastReceiverAd = new BTReciever();
         registerReceiver(broadcastReceiverAd, filterAd);
