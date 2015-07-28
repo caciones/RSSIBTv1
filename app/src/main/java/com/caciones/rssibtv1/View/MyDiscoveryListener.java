@@ -21,6 +21,7 @@ import javax.obex.ResponseCodes;
 /**
  * Created by Lenovo on 23/07/2015.
  */
+
 public class MyDiscoveryListener implements DiscoveryListener {
 
     private static Object lock = new Object();

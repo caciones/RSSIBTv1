@@ -16,7 +16,7 @@ class MyReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
-
+/*
 
         if(BluetoothDevice.ACTION_FOUND.equals(action) ) {
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -30,9 +30,9 @@ class MyReceiver extends BroadcastReceiver {
             BTController.putBTDevices(name, extraRSSI);
 
 
-        }
+        }*/
 
-       /* if (action.equals(BluetoothDevice.ACTION_FOUND)) {
+        if (action.equals(BluetoothDevice.ACTION_FOUND)) {
             Log.i(TAG, "BT____FOUND");
             String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
             Log.i(TAG, "BT____FOUND_Name: " + extraName);
@@ -41,6 +41,6 @@ class MyReceiver extends BroadcastReceiver {
             Log.i(TAG, "BT____FOUND");
 
 
-        }*/
+        }
     }
 }
