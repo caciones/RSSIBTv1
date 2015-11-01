@@ -33,7 +33,7 @@ public class BTActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
 
-        BTController btController = BTController.getInstance(); //tenta voltar ao broad cast recievermas com o btcontroller
+        BTController btController = BTController.getInstance(); //tenta voltar ao broad cast reciever mas com o btcontroller
                                                                 // em singleton eu acho que ele so apanha uma porque
                                                                 // cria varias instacias do bt controller
 

@@ -16,13 +16,15 @@
         android:layout_below="@+id/textViewBuilding"/>
 
 
-    <GridView
-        android:id="@+id/gridViewRoom"
+    <TableLayout
+        android:id="@+id/tableForButtons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewRoom"
-        android:layout_marginTop="26dp"
-        android:background="#00FF00"
-        android:numColumns="2" >
-    </GridView>
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@id/textViewBuilding"
+        android:layout_above="@id/textViewRoom"
+        android:layout_marginTop="0dp"
+        android:stretchColumns="*">
+
+
+    </TableLayout>
 </RelativeLayout>
