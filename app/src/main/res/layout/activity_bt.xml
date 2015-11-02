@@ -22,21 +22,26 @@
         android:text="Selected Room"
         android:padding="8dip"
         android:id="@+id/textViewRoom"/>
-
-
-    <ListView
-        android:id="@+id/android:list"
+    <TextView
+        android:id="@+id/bluetoothstate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewRoom" />
+        />
+
+    <ListView
+        android:id="@+id/devicesfound"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bluetoothstate" />
+
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Refresh"
-        android:id="@+id/btn_refresh"
-        android:gravity="bottom"
-        android:layout_below="@+id/android:list"
-         />
+        android:text="Scan Bluetooth Devices"
+        android:id="@+id/scandevice"
+        android:layout_above="@+id/textViewRoom"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

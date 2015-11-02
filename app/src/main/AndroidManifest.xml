@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.caciones.rssibtv1" >
 
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+
 
     <application
         android:name="com.orm.SugarApp"
@@ -80,24 +84,24 @@
                 android:value="com.caciones.rssibtv1.View.RoomActivity" />
         </activity>
 
-        <receiver android:name=".Controller.BTReciever" >
-        </receiver>
+        <!-- <receiver android:name=".Controller.BTReciever" >
+         </receiver>-->
 
-        <activity
-            android:name=".View.MeasurementsActivity"
-            android:label="@string/title_activity_measurements"
-            android:parentActivityName=".View.BTActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.caciones.rssibtv1.View.BTActivity" />
-        </activity>
+         <activity
+             android:name=".View.MeasurementsActivity"
+             android:label="@string/title_activity_measurements"
+             android:parentActivityName=".View.BTActivity" >
+             <meta-data
+                 android:name="android.support.PARENT_ACTIVITY"
+                 android:value="com.caciones.rssibtv1.View.BTActivity" />
+         </activity>
 
-        <!--<receiver android:name="com.caciones.rssibtv1.View.MyReceiver" >
-            <intent-filter>
-                <action android:name="com.example.Broadcast" >
-                </action>
-            </intent-filter>
-        </receiver>-->
+         <!--<receiver android:name="com.caciones.rssibtv1.View.MyReceiver" >
+             <intent-filter>
+                 <action android:name="com.example.Broadcast" >
+                 </action>
+             </intent-filter>
+         </receiver>-->
     </application>
 
 </manifest>

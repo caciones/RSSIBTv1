@@ -19,7 +19,6 @@ public class MeasurementsActivity extends ActionBarActivity {
 
     Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
