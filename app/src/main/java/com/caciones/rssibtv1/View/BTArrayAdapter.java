@@ -27,11 +27,13 @@ public class BTArrayAdapter extends ArrayAdapter<BTDeviceRO> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_bt_rssi, parent,false);
         }
 
-        TextView textView_name = (TextView) convertView.findViewById(R.id.list_bt_name);
-        TextView textView_rssi = (TextView) convertView.findViewById(R.id.list_rssi);
+        TextView textView_name = (TextView) convertView.findViewById(R.id.list_item_name);
+        TextView textView_rssi = (TextView) convertView.findViewById(R.id.list_item_rssi);
+        TextView textView_address = (TextView) convertView.findViewById(R.id.list_item_address);
 
         textView_name.setText(btDeviceRO.getBtName());
-        textView_rssi.setText(btDeviceRO.getRssiValue());
+        textView_rssi.setText(String.valueOf(btDeviceRO.getRssiValue()));
+        textView_address.setText(btDeviceRO.getAddress());
 
         return convertView;
     }

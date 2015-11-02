@@ -59,7 +59,7 @@ public class BTController extends Activity {
 // fazer uma lista com os nomes tirados da listBTDevices
     // TODO  meter a lista de nomes no view
     
-    public static List<BTDeviceRO> getListBTDevices(){
+ /**   public static List<BTDeviceRO> getListBTDevices(){
 
         List<BTDeviceRO> btNames= new ArrayList<BTDeviceRO>();
 
@@ -69,7 +69,7 @@ public class BTController extends Activity {
             btNames.add(deviceRO);
         }
         return btNames;
-    }
+    }*/
 
     public static void putBTDevices(String name, int rssi){
         Log.i(TAG, "NameBT: "+name+"RSSI: "+rssi);

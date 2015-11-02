@@ -4,14 +4,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_bt_name"
+        android:id="@+id/list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:paddingTop="5dp"/>
 
     <TextView
-        android:id="@+id/list_rssi"
+        android:id="@+id/list_item_rssi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingTop="5dp"/>
+
+    <TextView
+        android:id="@+id/list_item_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"

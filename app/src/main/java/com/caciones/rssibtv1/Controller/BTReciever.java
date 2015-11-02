@@ -16,13 +16,13 @@ public abstract class BTReciever extends BroadcastReceiver{
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "Reciever BT");
+
+
             String action = intent.getAction();
             if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                         BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
                 onBluetoothFound(device, rssi);
-                Log.i(TAG, "Device Found BTReciever\n" + "Name: " + device.getName() + "\n" + "Address: " + device.getAddress() + "\n" + "rssi: " + rssi + " dBm");
 
             }
 

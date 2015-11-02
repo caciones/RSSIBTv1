@@ -7,21 +7,21 @@
     tools:context="com.caciones.rssibtv1.View.BTActivity">
 
     <!-- Selected Building -->
-    <TextView
+  <!--  <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Selected Building"
         android:padding="8dip"
         android:id="@+id/textViewBuilding" />
 
-    <!-- Selected Room -->
-    <TextView
+    <!- Selected Room -->
+   <!-- <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewBuilding"
         android:text="Selected Room"
         android:padding="8dip"
-        android:id="@+id/textViewRoom"/>
+        android:id="@+id/textViewRoom"/>-->
     <TextView
         android:id="@+id/bluetoothstate"
         android:layout_width="fill_parent"
